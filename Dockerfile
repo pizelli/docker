@@ -7,7 +7,6 @@ ENV timezone=America/Sao_Paulo
 RUN apt-get update && \
     ln -snf /usr/share/zoneinfo/${timezone} /etc/localtime && echo ${timezone} > /etc/timezone && \
     apt-get install -y apache2 && \
-    apt-get update && \
     apt-get install -y software-properties-common && \
     add-apt-repository ppa:ondrej/php && \
     apt-get update && \
