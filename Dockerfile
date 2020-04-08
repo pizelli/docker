@@ -21,11 +21,16 @@ RUN apt-get update && \
     apt-get install -y php7.4-gd && \
     apt-get install -y php7.4-mbstring && \
     apt-get install -y php7.4-zip && \
+    apt-get install -y php7.4-xml && \
     apt-get install -y git && \
     a2enmod rewrite && \
-    php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && php composer-setup.php && rm composer-setup.php && mv composer.phar /usr/local/bin/composer && chmod a+x /usr/local/bin/composer
+    php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
+    php composer-setup.php && \
+    rm composer-setup.php && \
+    mv composer.phar /usr/local/bin/composer && \
+    chmod a+x /usr/local/bin/composer
 
-COPY ./000-default.conf /etc/apache2/sites-available
+COPY ./vhost.conf /etc/apache2/sites-available/000-default.conf
 
 EXPOSE 80
 
