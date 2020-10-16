@@ -21,6 +21,7 @@ RUN apt-get update && \
     apt-get install -y php7.4-mbstring && \
     apt-get install -y php7.4-zip && \
     apt-get install -y php7.4-xml && \
+    apt-get install -y php7.4-curl && \
     apt-get install -y git && \
     a2enmod rewrite && \
     php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
