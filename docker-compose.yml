@@ -6,7 +6,7 @@ services:
         environment: 
             - MYSQL_USER=root
             - MYSQL_ALLOW_EMPTY_PASSWORD=yes
-            - MYSQL_DATABASE=k15
+            - MYSQL_DATABASE=database_app
         ports: 
             - 3306:3306
         volumes:
@@ -25,4 +25,12 @@ services:
         depends_on: 
             - db
         tty: true
-        
+
+    phpmyadmin:
+        image: phpmyadmin
+        ports:
+            - 9000:80
+        environment:
+            - PMA_ARBITRARY=1
+            - PMA_HOST=db
+            - PMA_USER=root
