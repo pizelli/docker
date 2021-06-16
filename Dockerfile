@@ -1,6 +1,6 @@
 # docker build . -t pizelli/webserver:1.1
 
-FROM ubuntu:19.10
+FROM ubuntu:latest
 
 ENV timezone=America/Sao_Paulo
 
