@@ -1,15 +1,17 @@
 version: '3'
 
-services: 
+services:
     db:
         image: mysql:8.0
-        environment: 
-            - MYSQL_USER=root
+        environment:
             - MYSQL_ALLOW_EMPTY_PASSWORD=yes
             - MYSQL_DATABASE=database_app
-        ports: 
+            - MYSQL_USER=docker
+            - MYSQL_PASSWORD=docker
+        ports:
             - 3306:3306
         volumes:
+            - ./.docker/my.cnf:/etc/mysql/my.cnf
             - ./db_data:/var/lib/mysql
 
     app:
@@ -18,11 +20,11 @@ services:
             - ./.docker/vhost.conf:/etc/apache2/sites-available/000-default.conf
             - ./.docker/php-config.ini:/etc/php/7.4/apache2/conf.d/php-config.ini
             - ./:/var/www/html
-        ports: 
+        ports:
             - 8000:80
-        links: 
+        links:
             - db
-        depends_on: 
+        depends_on:
             - db
         tty: true
 
@@ -33,4 +35,5 @@ services:
         environment:
             - PMA_ARBITRARY=1
             - PMA_HOST=db
-            - PMA_USER=root
+            - PMA_USER=docker
+            - PMA_PASSWORD=docker
